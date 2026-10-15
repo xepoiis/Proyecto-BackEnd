@@ -1,9 +1,5 @@
 from rest_framework import serializers
-
-from .models import Categoria
-from .models import PerfilUsuario
-from .models import Ticket
-from .models import HistorialAuditoria
+from .models import Categoria, PerfilUsuario, Ticket, HistorialAuditoria
 
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
