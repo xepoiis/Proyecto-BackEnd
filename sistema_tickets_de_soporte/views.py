@@ -1,6 +1,10 @@
 from rest_framework import viewsets
+from django.shortcuts import render
 from .models import Categoria, PerfilUsuario, Ticket, HistorialAuditoria
 from .serializer import CategoriaSerializer, PerfilUsuarioSerializer, TicketSerializer, HistorialAuditoriaSerializer
+
+def index(request):
+    return render(request, 'index.html')
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     queryset = Categoria.objects.all()
