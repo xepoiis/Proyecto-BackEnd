@@ -40,13 +40,7 @@ pip install -r requirements.txt
 ### 4. Configuracion de Base de Datos y Entorno
 Ejecute el script SQL provisto en la raiz del proyecto (scripts_db.sql) en su gestor MySQL para crear la base de datos y asignar los privilegios al usuario.
 
-Asegurese de contar con el archivo .env en la raiz del proyecto para evitar la exposicion de credenciales. Este debe contener:
-SECRET_KEY='django-insecure-1io-5k@@1_d35n7)re&f0^0t_f7)(qxxmc=0ht!^e2g_)bn6&b'
-DB_NAME='sistema_tickets_db'
-DB_USER='usuario_tickets'
-DB_PASSWORD='su_contrasena'
-DB_HOST='127.0.0.1'
-DB_PORT='3306'
+Asegurese de contar con el archivo .env en la raiz del proyecto para evitar la exposicion de credenciales.
 
 ### 5. Migraciones y Usuario Administrador
 Genere las tablas en la base de datos e ingrese sus credenciales de administrador:
