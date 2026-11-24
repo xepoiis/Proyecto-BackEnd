@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{% if object %}Editar Auditoria{% else %}Registrar Auditoria{% endif %}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header fw-semibold">
+        {% if object %}Modificar Registro de Auditoria #{{ object.id }}{% else %}Nuevo Registro de Auditoria{% endif %}
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors }}</div>{% endif %}
+            </div>
+            {% endfor %}
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-dark">Guardar</button>
+                <a href="{% url 'auditoria_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

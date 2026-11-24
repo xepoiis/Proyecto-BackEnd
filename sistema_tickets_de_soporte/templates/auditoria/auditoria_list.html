@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Historial de Auditoria{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">Historial de Auditoria</h1>
+    <a href="{% url 'auditoria_create' %}" class="btn btn-dark">Nuevo Registro</a>
+</div>
+<div class="table-responsive bg-white border rounded">
+    <table class="table table-hover mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Ticket</th>
+                <th>Accion</th>
+                <th>Estado Anterior</th>
+                <th>Estado Nuevo</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auditoria in auditorias %}
+            <tr>
+                <td>{{ auditoria.id }}</td>
+                <td>#{{ auditoria.ticket.id }} - {{ auditoria.ticket.titulo }}</td>
+                <td>{{ auditoria.accion }}</td>
+                <td>{{ auditoria.estado_anterior }}</td>
+                <td>{{ auditoria.estado_nuevo }}</td>
+                <td class="text-end">
+                    <a href="{% url 'auditoria_detail' auditoria.pk %}" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                    <a href="{% url 'auditoria_update' auditoria.pk %}" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <a href="{% url 'auditoria_delete' auditoria.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center py-3 text-muted">No hay registros de auditoria.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

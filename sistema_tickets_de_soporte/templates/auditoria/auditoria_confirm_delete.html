@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Confirmar Eliminacion{% endblock %}
+{% block content %}
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white fw-semibold">Confirmar Eliminacion de Registro</div>
+    <div class="card-body">
+        <p>Esta seguro de eliminar el registro de auditoria <strong>#{{ auditoria.id }} - {{ auditoria.accion }}</strong>?</p>
+        <form method="post" class="d-flex gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar Eliminacion</button>
+            <a href="{% url 'auditoria_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

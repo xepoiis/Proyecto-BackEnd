@@ -1,12 +1,12 @@
 # Programación Back-End: Sistema de Tickets de Soporte
 
-El proyecto consiste en un sistema backend utilizando Django 6.1 y Django REST Framework (DRF) para digitalizar y centralizar la gestión de incidencias de soporte de una Mesa de Ayuda. Esta versión implementa una API REST funcional que permite realizar operaciones CRUD sobre el modelo de datos asignado.
+El proyecto consiste en un sistema backend utilizando Django 6.1 y Django REST Framework (DRF) para digitalizar y centralizar la gestión de incidencias de soporte de una Mesa de Ayuda. Esta versión implementa una API REST funcional y un sistema web completo con operaciones CRUD mediante vistas basadas en clases (CBV) sobre el modelo de datos asignado.
 
 ## Descripción del Proyecto
 
 El proyecto se compone de:
-- DRF: El núcleo del proyecto donde se alojan las configuraciones principales, el enrutamiento global hacia la API y la lectura de variables de entorno.
-- Sistema de Tickets de Soporte: La aplicación principal que gestiona la lógica de negocio, incluyendo modelos relacionales, serializadores y vistas basadas en         ModelViewSet.
+- DRF: El núcleo del proyecto donde se alojan las configuraciones principales, el enrutamiento global hacia la aplicación y la lectura de variables de entorno.
+- Sistema de Tickets de Soporte: La aplicación principal que gestiona la lógica de negocio, incluyendo modelos relacionales, serializadores, vistas basadas en ModelViewSet, formularios personalizados en forms.py (ModelForm con widgets), vistas basadas en clases (ListView, DetailView, CreateView, UpdateView, DeleteView) y plantillas HTML con herencia desde base.html.
 - Base de Datos: Persistencia en base de datos MySQL mediante el ORM de Django, SQLAlchemy y mysqlclient.
 - Endpoints REST: Enrutamiento automatizado mediante DefaultRouter para operaciones HTTP (GET, POST, PUT, PATCH, DELETE).
 
@@ -52,7 +52,14 @@ python manage.py createsuperuser
 Finalmente, levante el servidor de desarrollo local utilizando el archivo manage.py:
 python manage.py runserver
 
-Una vez que el servidor este en ejecucion, podra acceder a la interfaz navegable de la API REST en las siguientes rutas:
+Una vez que el servidor este en ejecucion, podra acceder a la interfaz web CRUD en las siguientes rutas:
+- http://127.0.0.1:8000/
+- http://127.0.0.1:8000/categorias/
+- http://127.0.0.1:8000/perfiles/
+- http://127.0.0.1:8000/tickets/
+- http://127.0.0.1:8000/auditoria/
+
+Y a la interfaz navegable de la API REST en:
 - http://127.0.0.1:8000/api/categorias/
 - http://127.0.0.1:8000/api/perfiles/
 - http://127.0.0.1:8000/api/tickets/

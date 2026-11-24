@@ -12,12 +12,20 @@ class Categoria(models.Model):
     created_at = models.DateTimeField(default=ahora)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.nombre} ({self.sla_horas}h SLA)"
+
+
 class PerfilUsuario(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     rol = models.CharField(max_length=25, null=False)
     departamento = models.CharField(max_length=100, null=False)
     created_at = models.DateTimeField(default=ahora)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.usuario.username} - {self.rol}"
+
 
 class Ticket(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -30,6 +38,10 @@ class Ticket(models.Model):
     created_at = models.DateTimeField(default=ahora)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"#{self.id} - {self.titulo}"
+
+
 class HistorialAuditoria(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     accion = models.CharField(max_length=100, null=False)
@@ -37,3 +49,6 @@ class HistorialAuditoria(models.Model):
     estado_nuevo = models.CharField(max_length=25, null=False)
     created_at = models.DateTimeField(default=ahora)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Ticket #{self.ticket.id}: {self.estado_anterior} -> {self.estado_nuevo}"

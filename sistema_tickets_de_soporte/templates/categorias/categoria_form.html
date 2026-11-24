@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}{% if object %}Editar Categoria{% else %}Crear Categoria{% endif %}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header fw-semibold">
+        {% if object %}Modificar Categoria #{{ object.id }}{% else %}Registrar Nueva Categoria{% endif %}
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.field.widget.input_type == 'checkbox' %}
+                <div class="form-check mb-3">
+                    {{ field }}
+                    <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+                {% else %}
+                <div class="mb-3">
+                    <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors }}</div>{% endif %}
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-dark">Guardar</button>
+                <a href="{% url 'categoria_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

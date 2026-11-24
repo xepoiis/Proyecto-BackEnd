@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Detalle Auditoria #{{ auditoria.id }}{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span class="fw-semibold">Registro de Auditoria #{{ auditoria.id }}</span>
+        <div class="d-flex gap-2">
+            <a href="{% url 'auditoria_update' auditoria.pk %}" class="btn btn-sm btn-primary">Editar</a>
+            <a href="{% url 'auditoria_delete' auditoria.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            <a href="{% url 'auditoria_list' %}" class="btn btn-sm btn-outline-secondary">Volver</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Ticket</dt>
+            <dd class="col-sm-9">#{{ auditoria.ticket.id }} - {{ auditoria.ticket.titulo }}</dd>
+            <dt class="col-sm-3">Accion</dt>
+            <dd class="col-sm-9">{{ auditoria.accion }}</dd>
+            <dt class="col-sm-3">Estado Anterior</dt>
+            <dd class="col-sm-9">{{ auditoria.estado_anterior }}</dd>
+            <dt class="col-sm-3">Estado Nuevo</dt>
+            <dd class="col-sm-9">{{ auditoria.estado_nuevo }}</dd>
+            <dt class="col-sm-3">Fecha Registro</dt>
+            <dd class="col-sm-9">{{ auditoria.created_at }}</dd>
+        </dl>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Categorias{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">Categorias de Soporte</h1>
+    <a href="{% url 'categoria_create' %}" class="btn btn-dark">Nueva Categoria</a>
+</div>
+<div class="table-responsive bg-white border rounded">
+    <table class="table table-hover mb-0">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>SLA (Horas)</th>
+                <th>Activa</th>
+                <th class="text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.id }}</td>
+                <td>{{ categoria.nombre }}</td>
+                <td>{{ categoria.sla_horas }}</td>
+                <td>{% if categoria.activa %}Si{% else %}No{% endif %}</td>
+                <td class="text-end">
+                    <a href="{% url 'categoria_detail' categoria.pk %}" class="btn btn-sm btn-outline-secondary">Detalle</a>
+                    <a href="{% url 'categoria_update' categoria.pk %}" class="btn btn-sm btn-outline-primary">Editar</a>
+                    <a href="{% url 'categoria_delete' categoria.pk %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center py-3 text-muted">No hay categorias registradas.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

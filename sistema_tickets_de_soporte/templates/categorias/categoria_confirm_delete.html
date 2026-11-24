@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Confirmar Eliminacion{% endblock %}
+{% block content %}
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white fw-semibold">Confirmar Eliminacion de Categoria</div>
+    <div class="card-body">
+        <p>Esta seguro de eliminar la categoria <strong>{{ categoria.nombre }}</strong>? Esta accion eliminara tambien sus tickets asociados.</p>
+        <form method="post" class="d-flex gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar Eliminacion</button>
+            <a href="{% url 'categoria_list' %}" class="btn btn-outline-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
